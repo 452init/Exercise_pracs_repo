@@ -15,5 +15,5 @@ def value(colors):
 
 	for i in colors:
 		if i in color_dict and len(color_num) < 2:
-			color_num += str(color_dict.get(i))
+			color_num += str(color_dict.get(i, None))
 	return int(color_num)
