@@ -1,10 +1,8 @@
 def flatten(iterable):
 	flattened_list = []
-	for i in iterable:
-		if isinstance(i, list):
-			flattened_list.extend(flatten(i))
-		elif i == None:
-			continue
-		else:
-			flattened_list.append(i)
+	for elem in iterable:
+		if isinstance(elem, list):
+			flattened_list.extend(flatten(elem))
+		elif elem is not None:
+			flattened_list.append(elem)
 	return flattened_list
