@@ -1,31 +1,22 @@
 def translate(text):
-	my_list = text.split()
-	vowels = 'aeiou'
-	final_list = []
-	result = ''
-
-	for word in my_list:
-		return_string = ''
-		new_list = list(word)
-		first_two_letters = word[0:2]
-		if first_two_letters == 'xr' or first_two_letters == 'yt':
-			new_list.append('ay')
-			return ''.join(new_list)
-		if first_two_letters == 'qu':
-			return_string += new_list.pop(0)
-			return_string += new_list.pop(0)
-		if 'y' in new_list and 'y' not in new_list[0]:
-			vowels += 'y'
-		if not any(l in vowels for l in new_list):
-			new_list.append('ay')
+	result_list = []
+	for word in text.split():
+		vowels = 'aeiou'
+		return_str = ''
+		if word[0] in vowels or word.startswith(('xr', 'yt')):
+			i = 0
+		elif word.startswith('qu'):
+			return_str = 'qu'
+			i = 2
 		else:
-			while new_list[0] not in vowels:
-				next_two_letters = ''.join(new_list[0:2])
-				if next_two_letters == 'qu':
-					return_string += new_list.pop(0)
-					return_string += new_list.pop(0)
-				else:
-					return_string += new_list.pop(0)
-		final_list.append(''.join(new_list) + return_string + 'ay')
-		result = ' '.join(final_list)
-	return result
+			if word.find('y')>0:
+				vowels += 'y'
+			for i, c in enumerate(word):
+				if c in vowels: break
+				return_str += c
+				if word[i:].startswith('qu'):
+					return_str += 'u'
+					i += 2
+					break
+		result_list.append(word[i:] + return_str + 'ay')
+	return ' '.join(result_list)
