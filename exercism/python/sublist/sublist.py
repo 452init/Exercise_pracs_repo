@@ -36,13 +36,8 @@ def sublist(list_one, list_two):
 
 	if list_one == list_two:
 		return EQUAL
-	elif list_one and not list_two:
+	elif len1 > len2 and is_contiguous_subsequence(list_one, list_two):
 		return SUPERLIST
-	elif not list_one and list_two:
-		return SUBLIST
-	elif len1 > len2:
-		if is_contiguous_subsequence(list_one, list_two):
-			return SUPERLIST
-	elif is_contiguous_subsequence(list_two, list_one):
+	elif len1 < len2 and is_contiguous_subsequence(list_two, list_one):
 		return SUBLIST
 	return UNEQUAL
