@@ -7,16 +7,17 @@ def rows(letter):
 	result_list = []
 
 	for row in range(diamond_size):
-		'''Every time the loop runs, space_list is reassigned new spaces'''
+		# Every time the loop runs, space_list is reassigned new spaces
 		space_list = diamond_size*[' ']
-		'''the d variable holds the minimum number equivalent to the right letter for each row and builds up the diamond shape prototype'''
+
+		# The d variable holds the minimum number equivalent to the right letter for each row and builds up the diamond shape prototype
 		d = min(row, diamond_size-1-row)
 
-		'''The variables hold position to which the letters go to'''
+		# The variables hold position to which the letters go to
 		left_index = center - d
 		right_index = center + d
 
-		'''The letters are placed at the right positon building up the diamond'''
+		# The letters are placed at the right positon building up the diamond
 		space_list[left_index] = alphabets[d]
 		space_list[right_index] = alphabets[d]
 
