@@ -1,16 +1,19 @@
-def build_row(row_num, total_row, alphabets):
-	space_list = total_row*[' ']
-	center = total_row//2
-	letter_position = min(row_num, total_row-1-row_num)
-
-	left_index = center - letter_position
-	right_index = center + letter_position
-	space_list[left_index] = alphabets[letter_position]
-	space_list[right_index] = alphabets[letter_position]
-
-	return ''.join(space_list)
-
 import string
+def build_row(row_num, total_rows, alphabets):
+	letter_position = min(row_num, total_rows-1-row_num)
+	spaces = (total_rows//2)*' '
+	letter = alphabets[letter_position]
+	
+	if letter == 'A':
+		first_row = spaces + letter+ spaces
+		return first_row
+	else:
+		outer_spaces = (total_rows//2 - letter_position) * ' '
+		inner_spaces = (letter_position*2-1)* ' '
+
+		return outer_spaces + letter + inner_spaces + letter + outer_spaces
+
+
 def rows(letter):
 	alphabets = string.ascii_uppercase
 
