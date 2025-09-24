@@ -22,6 +22,12 @@ def rows(letter):
 
 	letter_index = alphabets.find(letter)
 	total_rows = letter_index*2+1
-	result_list = ([build_row(rows, total_rows, alphabets) for rows in range(total_rows)])
 
-	return result_list
+	top_half = [build_row(row, total_rows, alphabets)
+	     for row in range(total_rows//2+1)]
+	
+	symmetry = top_half + top_half[(total_rows//2)-1::-1]
+
+	if len(top_half)>1:
+		return symmetry
+	return top_half
