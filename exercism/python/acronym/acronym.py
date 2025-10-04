@@ -1,3 +1,5 @@
+import re
+
 # using the extend method '+=' which is much slower
 def abbreviate(words):
     acronym = ''
@@ -23,3 +25,9 @@ def abbreviate(words):
     word_list = cleaned.split()
     acronyms = [acro[0] for acro in word_list]
     return ''.join(acronyms).upper()
+
+#solving using regex
+def abbreviate(words):
+    new_string = words.replace("'", '').replace("_", '')
+    cleaned = re.findall(r'\b\w', new_string)
+    return ''.join(cleaned).upper()
