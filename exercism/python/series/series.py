@@ -8,5 +8,13 @@ def slices(series, length):
     if length > len(series):
         raise ValueError('slice length cannot be greater than series length')
 
-    contiguous_substrings = [series[cont:cont+length] for cont in range(len(series) - length+1)]
-    return contiguous_substrings
+    result = slice_generator(series, length)
+
+    return [const for const in result]
+
+def slice_generator(string, str_len):
+    for const in range(len(string) - str_len+1):
+        yield string[const:const+str_len]
+
+
+#   return [series[cont:cont+length] for cont in range(len(series) - length+1)]
