@@ -1,3 +1,4 @@
+import itertools
 def slices(series, length):
     if length == 0:
         raise ValueError('slice length cannot be zero')
@@ -8,13 +9,18 @@ def slices(series, length):
     if length > len(series):
         raise ValueError('slice length cannot be greater than series length')
 
-    result = slice_generator(series, length)
+    contiguous_strings = (
+            series[const:const+length] for const in range(len(series) - length + 1)
+            )
+    return list(itertools.islice(contiguous_strings, None))
 
-    return [const for const in result]
+#    result = slice_generator(series, length)
 
-def slice_generator(string, str_len):
-    for const in range(len(string) - str_len+1):
-        yield string[const:const+str_len]
+#   return [const for const in result]
+
+#def slice_generator(string, str_len):
+#    for const in range(len(string) - str_len+1):
+#        yield string[const:const+str_len]
 
 
 #   return [series[cont:cont+length] for cont in range(len(series) - length+1)]
