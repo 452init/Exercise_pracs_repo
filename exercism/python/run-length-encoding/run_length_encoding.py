@@ -1,59 +1,30 @@
+from itertools import groupby
 def decode(string):
-    my_list = []
-    char_str = ''
-    next_char = ''
-    prev_char = ''
-    two_ahead = ''
-    processed = set()
+
+    decode_chars = []
+    count_string = ''
 
     if string == '':
         return string
 
-    for pos, char in enumerate(string):
-        if pos in processed:
-            continue
-        if pos + 1 < len(string):
-            next_char = string[pos+1]
-        if pos > 0:
-            prev_char = string[pos-1]
-        if pos + 2 < len(string):
-            two_ahead = string[pos+2]
-
-        if char.isdigit() and not next_char.isdigit():
-            my_list.append(int(char)*next_char)
-            processed.add(pos)
-            processed.add(pos + 1)
-        elif char.isdigit() and next_char.isdigit():
-            char_str = char + next_char
-            my_list.append(int(char_str)*two_ahead)
-            processed.add(pos)
-            processed.add(pos+1)
-            processed.add(pos+2)
-        elif not char.isdigit() and not prev_char.isdigit():
-            my_list.append(char)
-            processed.add(pos)
-    return ''.join(my_list)
+    for char in string:
+        if char.isdigit():
+            count_string += char
+        else:
+            if count_string != '':
+                decode_chars.append(int(count_string)*char)
+            else:
+                decode_chars.append(char)
+            count_string = ''
+    return ''.join(decode_chars)
 
 def encode(string):
     compressed_list = []
-    counter = 0
 
-    if string == '':
-        return string
-
-    prev_char = string[0]
-
-    for value in range(len(string)):
-        if string[value] == prev_char:
-            counter += 1
-        elif string[value] != prev_char:
-            if counter > 1:
-                compressed_list.append(str(counter))
-                counter = 1
-            compressed_list.append(prev_char)
-        prev_char = string[value]
-    if counter > 1:
-        compressed_list.append(str(counter))
-    compressed_list.append(prev_char)
+    for char, group in groupby(string):
+        length = len(list(group))
+        if length > 1:
+            compressed_list.append(str(length))
+        compressed_list.append(char)
 
     return ''.join(compressed_list)
