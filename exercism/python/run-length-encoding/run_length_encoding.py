@@ -4,14 +4,14 @@ def decode(string):
     decode_chars = []
     count_string = ''
 
-    if string == '':
+    if not string:
         return string
 
     for char in string:
         if char.isdigit():
             count_string += char
         else:
-            if count_string != '':
+            if count_string: 
                 decode_chars.append(int(count_string)*char)
             else:
                 decode_chars.append(char)
