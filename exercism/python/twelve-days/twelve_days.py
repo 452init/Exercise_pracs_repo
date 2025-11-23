@@ -12,13 +12,10 @@ def recite(start_verse, end_verse):
     for verse_num in range(start_verse, end_verse+1):
         gift_list = []
         for gift_pos in range(verse_num):
-            gift_list.append(gift_descriptions[gift_pos])
-        gift_list.reverse()
+            gift_list = [gift_descriptions[gift_pos]] + gift_list
         if verse_num > 1:
-            modified_gift: list = 'and ' + gift_list[-1]
-            gift_list[-1] = ''.join(modified_gift)
+            modified_gift: str = 'and ' + gift_list[-1]
+            gift_list[-1] = modified_gift
 
-        final_result.append('On the ' + day_names[verse_num-1] +
-                            ' day of Christmas my true love gave to me: ' +
-                            ', '.join(gift_list) + '.')
+        final_result.append(f"On the {day_names[verse_num-1]} day of Christmas my true love gave to me: {', '.join(gift_list)}.")
     return final_result
