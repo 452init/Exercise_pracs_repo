@@ -11,10 +11,9 @@ gift_descriptions = ['a Partridge in a Pear Tree', 'two Turtle Doves',
 
 def recite(start_verse, end_verse):
     final_result = []
-    #final_gift_list = []
 
     for verse in range(start_verse, end_verse+1):
-        gift_list_rev = [x for x in build_one_verse(verse)]
+        gift_list_rev = [_ for _ in build_one_verse(verse)]
         final_gift_list = gift_list_rev[-1]
         if len(gift_list_rev) > 1:
             modified_gift: str = 'and ' + final_gift_list[-1]
