@@ -5,7 +5,7 @@ def roman(number: int)-> str:
 
     roman_result: str = ''
 
-    for num in roman_mapping:
-        quotient, number = divmod(number, num)
-        roman_result += roman_mapping[num] * quotient
+    for value, symbol in roman_mapping.items():
+        quotient, number = divmod(number, value)
+        roman_result += symbol * quotient
     return roman_result
