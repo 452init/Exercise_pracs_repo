@@ -14,16 +14,18 @@ class Luhn:
             integer_list = [int(i) for i in string_num]
             integer_list = list(reversed(integer_list))
 
-            i = 1
-            while i < len(integer_list): #doubls the required values in the list
+            for i in range(1, len(integer_list), 2): #doubls the required values in the list
                 integer_list[i] *= 2
-                i += 2
 
             #splits all the values in the list
-            result = [int(num) for num in "".join([str(n) for n in integer_list])]
+
+            result = []
+            for doubled in integer_list:
+                if doubled > 9:
+                    doubled -=9
+                    result.append(doubled)
+                else:
+                    result.append(doubled)
 
             #sums the result and checks for mod 10 validity
-            if sum(result) % 10 == 0:
-                return True
-            else:
-                return False
+            return sum(result) % 10 == 0
