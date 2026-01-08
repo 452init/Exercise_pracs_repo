@@ -12,7 +12,8 @@ class Character:
 		self.hitpoints =  self.constitution_modifier + 10
 
 	def ability(self):
-		result = [random.randint(1, 5) for _ in range(3)]
+		result = [random.randint(1, 6) for _ in range(4)]
+		result = sorted(result)[1:]
 		return sum(result)
 
 def modifier(value):
