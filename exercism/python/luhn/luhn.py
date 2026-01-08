@@ -10,16 +10,15 @@ class Luhn:
         if len(string_num) < 2 or not string_num.isdigit():
             return False
 
-        #changes the strings to ints and return reversed generator
-        generator = (int(i) for i in string_num[::-1])
-
         #Helper function for doubling odd number digits
         def luhn_double(digit):
             doubled = digit * 2
             return doubled - 9 if doubled > 9 else doubled
 
-        #Generates all the digits in required order by luhn's algorithm
-        result_generator = (luhn_double(num) if idx % 2 !=0 else num for idx, num in enumerate(generator))
+        #Generates all the digits in required order by luhn's algorithm, sums the
+				#result and checks for mod 10 validity
 
-        #sums the result and checks for mod 10 validity
-        return sum(result_generator) % 10 == 0
+				return sum(
+						luhn_double(int(d)) if i % 2 else int(d)
+						for i, d in enumerate(string_num[::-1])
+						) % 10
