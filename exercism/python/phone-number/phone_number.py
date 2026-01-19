@@ -1,17 +1,14 @@
 import string
-
 class PhoneNumber:
     def __init__(self, number):
         if any(char.isalpha() for char in number):
             raise ValueError("letters not permitted")
         
         digits = ''.join(char for char in number if char.isdigit())
-
-        remaining = ''.join(char for char in number if not char.isdigit() and not char.isalpha())
+        remaining = {char for char in number if not char.isdigit() and not char.isalpha()}
         valid_formatting = ' ()-.+'
-        if any(char not in valid_formatting for char in remaining):
+        if not all(char in valid_formatting for char in remaining):
             raise ValueError("punctuations not permitted")
-
         if len(digits) < 10:
             raise ValueError("must not be fewer than 10 digits")
         if len(digits) > 11:
