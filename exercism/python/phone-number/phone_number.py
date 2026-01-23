@@ -10,7 +10,7 @@ class PhoneNumber:
 		digits = "".join(char for char in number if char.isdigit())
 		remaining = {char for char in number if not char.isdigit() or char.isalpha()}
 
-		valid_formatting = " ()-.+"
+		valid_formatting = {" ()-.+"}
 		if any(char.isalpha() for char in number):
 			raise ValueError("letters not permitted")
 		if remaining.difference(valid_formatting):
