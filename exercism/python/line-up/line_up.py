@@ -1,11 +1,6 @@
 def line_up(name, number):
-    if len(str(number))>1 and str(number)[-2] != '1' and str(number)[-1] != '0' or number < 4:
-        if str(number)[-1] == '1':
-            suffix = 'st'
-        elif str(number)[-1] == '2':
-            suffix = 'nd'
-        elif str(number)[-1] == '3':
-            suffix = 'rd'
-    else:
+    mapping = {'1': 'st', '2': 'nd', '3': 'rd'}
+    suffix = mapping.get(str(number)[-1], 'th')
+    if 11 <= number % 100 <= 13:
         suffix = 'th'
     return f'{name}, you are the {number}{suffix} customer we serve today. Thank you!'
