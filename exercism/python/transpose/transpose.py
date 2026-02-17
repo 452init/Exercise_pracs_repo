@@ -3,15 +3,15 @@ from itertools import zip_longest, chain
 
 def transpose(text) -> str:
     lines = text.splitlines()
-
-    max_len = 0
-    padded_lines = []
+    target_widths = []
+    current_max = 0
     for line in reversed(lines):
-        max_len = max(max_len, len(line))
+        current_max = max(current_max, len(line))
+        target_widths.append(current_max)
 
-        padded_lines.append(chain(line))
-
-    lines = list(reversed(padded_lines))
-    transposed = zip_longest(*lines, fillvalue='')
-
+		target_widths.reverse()
+    # Pad lines to the required width
+    padded = [line.ljust(w) for line, w in zip(lines, target_widths)]
+    # Transpose and join (like you already do)
+    transposed = zip_longest(*padded, fillvalue='')
     return '\n'.join(''.join(row) for row in transposed)
