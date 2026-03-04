@@ -17,10 +17,10 @@ def score(dice, category):
         return 0
 
     first_num = dice[0]
-    total_category = 0
+    total = 0
 
     if category == YACHT:
-        total_category = 50
+        total = 50
     else:
-        all(num == first_num for num in dice)
-    return total_category
+        total = dice.count(category)
+    return total
