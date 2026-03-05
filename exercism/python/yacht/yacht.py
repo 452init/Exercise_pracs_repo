@@ -21,6 +21,10 @@ def score(dice, category):
 
     if category == YACHT:
         total = 50
+    elif category == FULL_HOUSE:
+        total = all(dice[0:3])
+    elif category == FOUR_OF_A_KIND:
+        total = all(dice[0:4])
     else:
-        total = dice.count(category)
+        total = (dice.count(category))*category
     return total
