@@ -14,17 +14,13 @@ CHOICE = "any_combination"
 
 def score(dice, category):
     if not dice:
-        return 0
+			return 0
 
     first_num = dice[0]
     total = 0
 
     if category == YACHT:
-        total = 50
-    elif category == FULL_HOUSE:
-        total = all(dice[0:3])
-    elif category == FOUR_OF_A_KIND:
-        total = all(dice[0:4])
+			total = 50
     else:
-        total = (dice.count(category))*category
+			total = dice.count(category)*category
     return total
