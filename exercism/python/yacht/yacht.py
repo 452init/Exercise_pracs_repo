@@ -5,6 +5,7 @@ THREES = 3
 FOURS = 4
 FIVES = 5
 SIXES = 6
+
 FULL_HOUSE = "same_threes_and_twos"
 FOUR_OF_A_KIND = "same_four_numbers"
 LITTLE_STRAIGHT = "from_1_to_5"
