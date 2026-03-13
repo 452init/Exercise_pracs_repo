@@ -19,7 +19,6 @@ def score(dice, category):
 
     first_num = dice[0]
     total = 0
-
     if category == YACHT:
 			total = 50
     else:
