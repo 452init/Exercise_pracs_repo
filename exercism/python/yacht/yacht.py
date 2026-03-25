@@ -1,3 +1,5 @@
+from collections import Counter
+
 YACHT = 50
 ONES = 1
 TWOS = 2
@@ -16,15 +18,27 @@ def score(dice, category):
     if not dice:
         return 0
 
+    counts = Counter(dice)
+    max_val = max(counts, key=counts.get)
+    frequencies = sorted(counts.values())
     first_num = dice[0]
     total = 0
 
-    if category == YACHT:
+    if category == YACHT and all(num == first_num for num in dice):
         total = 50
-    elif category == FULL_HOUSE:
-        total = all(dice[0:3])
-    elif category == FOUR_OF_A_KIND:
-        total = all(dice[0:4])
+    elif category == FULL_HOUSE and frequencies == [2, 3]:
+        total = sum(dice)
+    elif category == FOUR_OF_A_KIND and max(counts.values()) >= 4:
+        total = sum(max for max in dice[:4] if max == max_val)
+    elif category == LITTLE_STRAIGHT and sorted(dice) == [1,2,3,4,5]:
+        total = 30
+    elif category == BIG_STRAIGHT and sorted(dice) == [2,3,4,5,6]:
+        total = 30
+    elif category == CHOICE:
+        total = sum(dice)
     else:
-        total = (dice.count(category))*category
+        if not category:
+            total = 0
+        else:
+            total = dice.count(category)*category
     return total
