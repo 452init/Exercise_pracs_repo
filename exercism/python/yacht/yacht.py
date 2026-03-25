@@ -29,16 +29,13 @@ def score(dice, category):
     elif category == FULL_HOUSE and frequencies == [2, 3]:
         total = sum(dice)
     elif category == FOUR_OF_A_KIND and max(counts.values()) >= 4:
-        total = sum(max for max in dice[:4] if max == max_val)
+        total = max_val*4
     elif category == LITTLE_STRAIGHT and sorted(dice) == [1,2,3,4,5]:
         total = 30
     elif category == BIG_STRAIGHT and sorted(dice) == [2,3,4,5,6]:
         total = 30
     elif category == CHOICE:
         total = sum(dice)
-    else:
-        if not category:
-            total = 0
-        else:
-            total = dice.count(category)*category
+    elif category:
+        total = dice.count(category)*category
     return total
