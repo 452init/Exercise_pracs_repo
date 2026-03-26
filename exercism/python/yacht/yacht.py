@@ -24,7 +24,7 @@ def score(dice, category):
     first_num = dice[0]
     total = 0
 
-    if category == YACHT and all(num == first_num for num in dice):
+    if category == YACHT and frequencies == [5]:
         total = 50
     elif category == FULL_HOUSE and frequencies == [2, 3]:
         total = sum(dice)
