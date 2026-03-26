@@ -37,5 +37,8 @@ def score(dice, category):
     elif category == CHOICE:
         total = sum(dice)
     else:
-        total = dice.count(category)*category or total
+        if category in set([ONES, TWOS, THREES, FOURS, FIVES, SIXES]):
+            total = dice.count(category)*category
+        else:
+            total
     return total
