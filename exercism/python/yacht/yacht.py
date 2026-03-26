@@ -21,7 +21,6 @@ def score(dice, category):
     counts = Counter(dice)
     max_val = max(counts, key=counts.get)
     frequencies = sorted(counts.values())
-    first_num = dice[0]
     total = 0
 
     if category == YACHT and frequencies == [5]:
