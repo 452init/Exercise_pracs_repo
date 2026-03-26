@@ -39,6 +39,4 @@ def score(dice, category):
     else:
         if category in set([ONES, TWOS, THREES, FOURS, FIVES, SIXES]):
             total = dice.count(category)*category
-        else:
-            total
     return total
