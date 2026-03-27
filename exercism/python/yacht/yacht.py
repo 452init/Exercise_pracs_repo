@@ -1,3 +1,4 @@
+"""Module Counter creates a map that counts the frequency of a given element"""
 from collections import Counter
 
 YACHT = 50
@@ -15,6 +16,7 @@ CHOICE = "any_combination"
 
 
 def score(dice, category):
+    """Calculate the score for a given dice roll based on the selected Yacht category."""
     if not dice:
         return 0
 
